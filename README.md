@@ -6,12 +6,13 @@ Author : [Srinikethan Mankala
 
 <!-- TOC -->
 <H2> Table of Contents</H2>
-* [Module 1](https://github.com/srini1392/Self-Driving-Cars#-course-1--introduction-to-self-driving-cars)
+
+* [Module-1](https://github.com/srini1392/Self-Driving-Cars#-course-1--introduction-to-self-driving-cars)
     * [Glossary of Terms](https://github.com/srini1392/Self-Driving-Cars#-glossary-of-terms)
     * [Taxonomy](https://github.com/srini1392/Self-Driving-Cars#-taxonomy)
     * [Hardware-Architecture](https://github.com/srini1392/Self-Driving-Cars#-hardware-architecture)
     * [Software-Architecture](https://github.com/srini1392/Self-Driving-Cars#-software-architecture)
-    * [Environment-Perception](https://github.com/srini1392/Self-Driving-Cars#Environment-Perception)
+    * [Environment-Perception](https://github.com/srini1392/Self-Driving-Cars#Environment-Perception)    
 
 <!-- stop TOC -->
 
