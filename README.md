@@ -6,12 +6,11 @@ Author : [Srinikethan Mankala
 
 <!-- TOC -->
 <H2> Table of Contents</H2>
-
-* [Module-1](https://github.com/srini1392/Self-Driving-Cars#Course-1-:-Introduction-to-Self-driving-Cars)
-    * [Glossary of Terms](https://github.com/srini1392/Self-Driving-Cars#Glossary-of-Terms)
-    * [Taxonomy](https://github.com/srini1392/Self-Driving-Cars#Taxonomy)
-    * [Hardware-Architecture](https://github.com/srini1392/Self-Driving-Cars#Hardware-Architecture)
-    * [Software-Architecture](https://github.com/srini1392/Self-Driving-Cars#Software-Architecture)
+* [Module 1](https://github.com/srini1392/Self-Driving-Cars#-course-1--introduction-to-self-driving-cars)
+    * [Glossary of Terms](https://github.com/srini1392/Self-Driving-Cars#-glossary-of-terms)
+    * [Taxonomy](https://github.com/srini1392/Self-Driving-Cars#-taxonomy)
+    * [Hardware-Architecture](https://github.com/srini1392/Self-Driving-Cars#-hardware-architecture)
+    * [Software-Architecture](https://github.com/srini1392/Self-Driving-Cars#-software-architecture)
     * [Environment-Perception](https://github.com/srini1392/Self-Driving-Cars#Environment-Perception)
 
 <!-- stop TOC -->
@@ -22,7 +21,7 @@ Author : [Srinikethan Mankala
 <H2> Course 1 : Introduction to Self driving Cars</H2>
 
 <!-- Glossary -->
-<H2> Glossary of Terms</H2>
+<H2> Glossary</H2>
 
 * *__ACC: Adaptive Cruise Control__*</br>
     A cruise control system for vehicles which controls longitudinal speed. ACC can maintain a desired reference speed or adjust its speed accordingly to maintain safe driving distances to other vehicles.
