@@ -352,10 +352,26 @@ Typically, the problem of classification and localization of the environmental e
 * *__Localization Map__*</br>
     This map is created using a continuous set of lidar points or camera image features as the car moves through the enviromment.
     This map is then used in combination with GPS, IMU and wheel odometry by the localization module To accurately estimate the precise location of the vehicle at all times.
+    The localization map uses recorded LIDAR points or images, which are combined to make a point cloud representation of the environment. As new LIDAR camera data is received it is compared to the localization map and a measurement of the eagle vehicles position is created by aligning the new data with the existing map.
+    This measurement is then combined with other sensors to estimate eagle motion and ultimately used to control the vehicle.
 
 * *__Occupancy grid Map__* </br>
     The occupancy grid also uses a continuous set of LIDAR points to build a map of the environment which indicates the location of all static, or stationary, obstacles. 
     This map is used to plan safe, collision-free paths for the autonomous vehicle.
+    The occupancy grid is a 2D or 3D discretized map of the static objects in the environments surrounding the eagle vehicle. This map is created to identify all static objects around the autonomous car, once again, using point clouds as our input.
+    The objects which are classified as static include trees, buildings, curbs, and all other nondriveable surfaces. 
+    As the occupancy grid only represents the static objects from the environment, all dynamic objects must first be removed. This is done by removing all lidar points that are found within the bounding boxes of detected dynamic objects identified by the perception stack.
+    Next, static objects which will not interfere with the vehicle are also removed. Such as dryable service or any over hanging tree branches. As result of these steps only the relevent writer points from static objects from the environment remain.
+    The occupancy grid, therefore, represents the environment probabilistically, by tracking the likelihood that a grid cells occupy over time.
+    This map is then relied on to create paths for the vehicle which are collusion-free.
 
 * *__Detailed road Map__*</br>
     It contains detailed positions for all regulatory elements, regulatory attributes and lane markings. This map is used to plan a path from the current position to the final destination.
+    is a map of the full road network which can be driven by the self-driving car.
+    This map contains information regarding the lanes of a road, as well as any traffic regulation elements which may affect them.
+    The detailed road map is used to plan a safe and efficient path to be taken by the self-driving car.
+    The detailed road map can be created in one of three ways. Fully online, fully offline, or created offline and updated online.
+    A map which is created fully online relies heavily on the static object proportion of the perception stack to accurately label and correctly localize all relevant static objects to create the map.
+    This includes all lane boundaries in the current driving environment, any regulation elements, such as traffic lights or traffic signs, any regulation attributes of the lanes, such as right turn markings or crosswalks.
+    This method of map creation is rarely used due to the complexity of creating such a map in real time.
+    A map which is created entirely offline is usually done by collecting data of a given road several times. Specialized vehicles with high accuracy sensors are driven along roadways regularly to construct offline maps. Once the collection is complete, the information is then labelled with the use of a mixture of automatic labelling from static object perception and human annotation and correction.
