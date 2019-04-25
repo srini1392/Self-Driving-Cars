@@ -7,12 +7,13 @@ Author : [Srinikethan Mankala
 <!-- TOC -->
 <H2> Table of Contents</H2>
 
-* [Module-1](https://github.com/srini1392/Self-Driving-Cars#-course-1--introduction-to-self-driving-cars)
-    * [Glossary of Terms](https://github.com/srini1392/Self-Driving-Cars#-glossary-of-terms)
-    * [Taxonomy](https://github.com/srini1392/Self-Driving-Cars#-taxonomy)
-    * [Hardware-Architecture](https://github.com/srini1392/Self-Driving-Cars#-hardware-architecture)
-    * [Software-Architecture](https://github.com/srini1392/Self-Driving-Cars#-software-architecture)
-    * [Environment-Perception](https://github.com/srini1392/Self-Driving-Cars#Environment-Perception)    
+* [Module-1](https://github.com/srini1392/Self-Driving-Cars#Course-1-:-Introduction-to-Self-driving-Cars)
+    * [Glossary of Terms](https://github.com/srini1392/Self-Driving-Cars#Glossary-of-Terms)
+    * [Taxonomy](https://github.com/srini1392/Self-Driving-Cars#Taxonomy)
+    * [Hardware-Architecture](https://github.com/srini1392/Self-Driving-Cars#Hardware-Architecture)
+    * [Software-Architecture](https://github.com/srini1392/Self-Driving-Cars#Software-Architecture)
+    * [Environment-Perception](https://github.com/srini1392/Self-Driving-Cars#Environment-Perception)
+    * [Dynamic-Modeling](https://github.com/srini1392/Self-Driving-Cars#Dynamic-Modeling)
 
 <!-- stop TOC -->
 
@@ -22,7 +23,7 @@ Author : [Srinikethan Mankala
 <H2> Course 1 : Introduction to Self driving Cars</H2>
 
 <!-- Glossary -->
-<H2> Glossary</H2>
+<H2> Glossary of Terms</H2>
 
 * *__ACC: Adaptive Cruise Control__*</br>
     A cruise control system for vehicles which controls longitudinal speed. ACC can maintain a desired reference speed or adjust its speed accordingly to maintain safe driving distances to other vehicles.
@@ -221,7 +222,7 @@ d = $V^2$ / 2a
             a range of 40 to 60 meters is needed to find space between vehicles.
 >>
 ![Urban coverage](images/Coverage_sensors.png)
-</br></br></br>
+</br></br>
 
 
 
@@ -275,7 +276,6 @@ Typically, the problem of classification and localization of the environmental e
 - __Localization Map__ </br>
     ![](images/localization_map.png)</br>
     (LiDAR,Camera) for Ego localization & estimation</br></br></br></br>
-
 
 - __Detailed road Map__ </br>
     ![](images/detailed_road.png)</br>
@@ -346,32 +346,48 @@ Typically, the problem of classification and localization of the environmental e
     Responsibility of validating this software stack to make sure that all elements are running as intended at the right frequencies and providing complete outputs. The software supervisor also is responsible for analyzing inconsistencies between the outputs of all modules. In this video, we looked at the basic software architecture of a typical self-driving software system.
 
 
+</br>
 <!--Environment Perception  -->
 <H2>Environment Perception</H2>
 
 * *__Localization Map__*</br>
     This map is created using a continuous set of lidar points or camera image features as the car moves through the enviromment.
     This map is then used in combination with GPS, IMU and wheel odometry by the localization module To accurately estimate the precise location of the vehicle at all times.
-    The localization map uses recorded LIDAR points or images, which are combined to make a point cloud representation of the environment. As new LIDAR camera data is received it is compared to the localization map and a measurement of the eagle vehicles position is created by aligning the new data with the existing map.
-    This measurement is then combined with other sensors to estimate eagle motion and ultimately used to control the vehicle.
 
 * *__Occupancy grid Map__* </br>
     The occupancy grid also uses a continuous set of LIDAR points to build a map of the environment which indicates the location of all static, or stationary, obstacles. 
     This map is used to plan safe, collision-free paths for the autonomous vehicle.
-    The occupancy grid is a 2D or 3D discretized map of the static objects in the environments surrounding the eagle vehicle. This map is created to identify all static objects around the autonomous car, once again, using point clouds as our input.
-    The objects which are classified as static include trees, buildings, curbs, and all other nondriveable surfaces. 
-    As the occupancy grid only represents the static objects from the environment, all dynamic objects must first be removed. This is done by removing all lidar points that are found within the bounding boxes of detected dynamic objects identified by the perception stack.
-    Next, static objects which will not interfere with the vehicle are also removed. Such as dryable service or any over hanging tree branches. As result of these steps only the relevent writer points from static objects from the environment remain.
-    The occupancy grid, therefore, represents the environment probabilistically, by tracking the likelihood that a grid cells occupy over time.
-    This map is then relied on to create paths for the vehicle which are collusion-free.
 
 * *__Detailed road Map__*</br>
     It contains detailed positions for all regulatory elements, regulatory attributes and lane markings. This map is used to plan a path from the current position to the final destination.
-    is a map of the full road network which can be driven by the self-driving car.
-    This map contains information regarding the lanes of a road, as well as any traffic regulation elements which may affect them.
-    The detailed road map is used to plan a safe and efficient path to be taken by the self-driving car.
-    The detailed road map can be created in one of three ways. Fully online, fully offline, or created offline and updated online.
-    A map which is created fully online relies heavily on the static object proportion of the perception stack to accurately label and correctly localize all relevant static objects to create the map.
-    This includes all lane boundaries in the current driving environment, any regulation elements, such as traffic lights or traffic signs, any regulation attributes of the lanes, such as right turn markings or crosswalks.
-    This method of map creation is rarely used due to the complexity of creating such a map in real time.
-    A map which is created entirely offline is usually done by collecting data of a given road several times. Specialized vehicles with high accuracy sensors are driven along roadways regularly to construct offline maps. Once the collection is complete, the information is then labelled with the use of a mixture of automatic labelling from static object perception and human annotation and correction.
+
+
+
+</br>
+<!--Dynamic Modeling  -->
+<H2>Dynamic Modeling</H2>
+Creating a good vehicle model is essential for model-based control development.Both the evolution of the kinematics, that is, positions and velocities, and the dynamics or forces 
+and torques of a car and how they connect.</br></br>
+
+*__Kinematic Modeling__*
+>>
+    Generally, vehicle motion can be modeled either by considering the geometric constraint that defines its motion or 
+    by considering all of the forces and moments acting on a vehicle.
+    Especially at low speeds when the accelerations are not significant, 
+    Kinematic Modeling is more than sufficient to capture the motion of a vehicle
+>>
+
+*__Dynamic Modeling__*
+>>
+    When we instead include knowledge of the forces & moments acting on the vehicle,we're performing Dynamic Modeling.
+    Dynamic models can do a great job of estimating vehicle motion throughout the vehicles operating range, 
+    but are more involved to develop than kinematic models
+>>
+
+
+<H3> Coordinate Frame Transformations </H3>
+
+* The coordinate frames we use are right-handed frames by convention.
+* The global world or inertial coordinate frame, is a fixed reference frame attached to the earth. Often, we'll represent this coordinate frame as __East North Up, ENU__,
+    relative to a reference point nearby. Or __Earth-Centered Earth Fixed, ECEF__, as is used in GNSS systems.
+    
